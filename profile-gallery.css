@@ -1,0 +1,55 @@
+/* A photographic portrait: preserve the whole photograph at every width. */
+body[data-page=brand]{overflow-anchor:none}
+.maker-profile{padding:30px 0 70px;overflow:hidden;--portrait-height:clamp(360px,36vw,510px);--portrait-gap:28px}
+.profile-intro{display:grid;grid-template-columns:1fr 1fr;gap:10vw;align-items:end;padding:48px 0 52px}
+.profile-intro .eyebrow{font-size:14px;letter-spacing:.06em;margin-bottom:20px}
+.profile-intro h2{font:400 clamp(34px,4.4vw,64px)/1.5 var(--serif);letter-spacing:-.06em}
+.profile-intro h2 span{color:var(--indigo)}
+.profile-story{font-size:16px;line-height:2.2;max-width:440px;color:var(--muted);padding-bottom:8px}
+.profile-viewport{overflow-x:auto;overflow-y:hidden;padding:0 var(--pad) 8px;scroll-padding-inline:var(--pad);scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;outline-offset:-4px;touch-action:pan-x pan-y;cursor:grab}
+.profile-viewport::-webkit-scrollbar{display:none}
+.profile-viewport.is-dragging,.profile-viewport.is-dragging button{cursor:grabbing}
+.profile-viewport.is-dragging{user-select:none}
+.profile-track{display:flex;gap:var(--portrait-gap);width:max-content;align-items:flex-start;position:relative}
+.profile-card{flex:0 0 auto;width:calc(var(--portrait-height) * var(--photo-ratio));margin:0;scroll-snap-align:start}
+.profile-photo{display:block;width:100%;position:relative;text-align:left;overflow:hidden;background:var(--paper)}
+.profile-photo img{width:100%;height:auto;aspect-ratio:var(--photo-ratio);object-fit:contain;object-position:center;transform:none;filter:none}
+.profile-enlarge{position:absolute;right:15px;bottom:15px;background:rgba(247,245,239,.94);color:var(--indigo);font-size:13px;padding:7px 12px;opacity:0;transition:opacity .25s}
+.profile-photo:hover .profile-enlarge,.profile-photo:focus-visible .profile-enlarge{opacity:1}
+.interior .profile-card figcaption{margin:17px 0 0;letter-spacing:0}
+.profile-card figcaption strong{display:block;font-weight:400;font-size:16px;color:var(--ink);line-height:1.5}
+.profile-card figcaption>span{display:block;font-size:13px;color:var(--muted);margin-top:5px;line-height:1.65}
+.profile-toolbar{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:28px}
+.profile-toolbar>p{font-size:14px;color:var(--muted)}
+.profile-controls{display:flex;align-items:center;gap:20px;font-size:14px;flex-shrink:0}
+.profile-controls[hidden]{display:none}
+.profile-controls button{min-height:44px;border-bottom:1px solid var(--line)}
+.profile-controls button:hover{border-color:var(--indigo)}
+.profile-controls button:disabled{opacity:.6;cursor:default}
+.profile-count{font:italic 18px var(--display);color:var(--gold-ink);min-width:40px}
+.profile-viewer{width:min(1320px,96vw);height:94dvh;max-height:94dvh;max-width:96vw;margin:auto;padding:0;background:var(--paper);overflow:hidden}
+.profile-viewer-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 26px;gap:24px;border-bottom:1px solid var(--line);height:68px;font-size:16px}
+.profile-viewer-bar button{min-height:44px;flex-shrink:0}
+.profile-viewer-stage{height:calc(100% - 118px);padding:22px;display:flex;align-items:center;justify-content:center}
+.profile-viewer-stage img{width:100%;height:100%;object-fit:contain}
+.profile-viewer-caption{font-size:14px;color:var(--muted);text-align:center;padding:0 20px 16px}
+@media(max-width:760px){
+ .maker-profile{padding:20px 0 40px;--portrait-gap:18px}
+ .profile-intro{grid-template-columns:1fr;gap:22px;padding:30px 0 32px}
+ .profile-intro h2{font-size:38px;line-height:1.5}
+ .profile-intro .eyebrow{font-size:13px;margin-bottom:14px}
+ .profile-story{font-size:16px;line-height:2;max-width:100%;padding:0}
+ .profile-card{width:calc(100vw - var(--pad) * 2 - 24px)}
+ .profile-viewport{transition:height .4s ease;scrollbar-width:none}
+ .profile-photo img{height:auto;width:100%;aspect-ratio:var(--photo-ratio);object-fit:contain}
+ .profile-enlarge{opacity:1;right:10px;bottom:10px;font-size:12px;padding:5px 9px}
+ .profile-toolbar{display:block;margin-top:18px}
+ .profile-toolbar>p{font-size:13px}
+ .profile-controls{justify-content:space-between;gap:15px;margin-top:15px;font-size:14px}
+ .profile-viewer{width:100%;max-width:100%;height:100dvh;max-height:100dvh}
+ .profile-viewer-bar{padding:12px 20px;font-size:14px}
+ .profile-viewer-stage{padding:16px}
+ .profile-viewer-caption{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.profile-viewport,.profile-enlarge{transition:none}}
+.motion-reduced .profile-viewport{transition:none}
