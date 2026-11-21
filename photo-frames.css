@@ -1,0 +1,35 @@
+/* Approved photo frame: 10px of the existing matte brand gold. */
+:root { --photo-frame-width: 10px; --photo-frame-color: var(--gold, #ac9c6d); }
+
+/* Keep the frame still while photographs reveal, zoom or change within it. */
+:is(.hands-window, .work-photo, .jari-image, .object-image,
+    .comparison-photo, .facility-panorama, .space-photo,
+    .detail-image-stage, .profile-photo, .image-window,
+    .process-row > figure, .archive-feature > a) {
+  border: var(--photo-frame-width) solid var(--photo-frame-color);
+  box-sizing: border-box;
+}
+
+/* Photographs with captions or no separate image window. */
+:is(.material-swatch, .exhibit-photo, .visit-layout figure,
+    .story-opening-grid > figure, .collection-opening > figure,
+    .visit-page-layout > figure, .history-heading,
+    .journey, .next-chapter, .archive-row) > img,
+.journey .editorial-split img {
+  border: var(--photo-frame-width) solid var(--photo-frame-color);
+  box-sizing: border-box;
+}
+
+/* Equal photograph heights without cutting the maker portraits. */
+@media (min-width: 761px) {
+  .profile-card {
+    width: calc(var(--portrait-height) * var(--photo-ratio) + var(--photo-frame-width) * 2);
+  }
+}
+
+/* The frame remains outside the moving reveal strips. */
+:is(.hands-window, .image-window, .process-row > figure,
+    .archive-feature > a, .facility-panorama,
+    .space-photo, .detail-image-stage) > :is(.thread-veil, .weave-shutter) {
+  inset: 0;
+}
