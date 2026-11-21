@@ -1,5 +1,14 @@
-/* Approved photo frame: 10px of the existing matte brand gold. */
-:root { --photo-frame-width: 10px; --photo-frame-color: var(--gold, #ac9c6d); }
+/* Matte brand gold: 10px on large photographs, 4pt on compact photographs. */
+:root {
+  --photo-frame-width: 10px;
+  --photo-frame-small: 4pt;
+  --photo-frame-color: var(--gold, #ac9c6d);
+}
+
+:is(.work-photo, .jari-image, .object-image, .comparison-photo,
+    .profile-card, .material-swatch, .next-chapter, .archive-row) {
+  --photo-frame-width: var(--photo-frame-small);
+}
 
 /* Keep the frame still while photographs reveal, zoom or change within it. */
 :is(.hands-window, .work-photo, .jari-image, .object-image,
@@ -18,6 +27,31 @@
 .journey .editorial-split img {
   border: var(--photo-frame-width) solid var(--photo-frame-color);
   box-sizing: border-box;
+}
+
+/* Fill fixed image windows proportionally, without letterboxing or stretching. */
+.detail-image-stage > img,
+.comparison-photo > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Whole-work mode and exhibition documents keep every edge in a fitted frame. */
+.work-photo.whole,
+.project-detail .detail-image-stage {
+  aspect-ratio: auto;
+}
+.work-photo.whole > img,
+.project-detail .detail-image-stage > img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 760px) {
+  :root { --photo-frame-width: var(--photo-frame-small); }
 }
 
 /* Equal photograph heights without cutting the maker portraits. */
